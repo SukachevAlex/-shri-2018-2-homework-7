@@ -1,0 +1,116 @@
+.event__info
+    height: 100%
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    &_white
+        color: #FFFFFF
+
+.event__header
+    display: flex
+    flex-wrap: nowrap
+    justify-content: flex-start
+    align-items: center
+    color: inherit
+
+.event__icon
+    width: 52px
+    height: 52px
+    background-repeat: no-repeat
+    background-position: center
+    background-size: 100%
+    &_key
+        background-image: url(./img/svg/key.svg)
+    &_stats
+        background-image: url(./img/svg/stats.svg)
+    &_robot-cleaner
+        background-image: url(./img/svg/robot-cleaner.svg)
+    &_router
+        background-image: url(./img/svg/router.svg)
+    &_thermal
+        background-image: url(./img/svg/thermal.svg)
+    &_ac
+        background-image: url(./img/svg/ac-white.svg)
+    &_music
+        background-image: url(./img/svg/music.svg)
+        background-size: 80%
+    &_fridge
+        background-image: url(./img/svg/fridge.svg)
+        background-size: 80%
+    &_battery
+        background-image: url(./img/svg/battery.svg)
+    &_cam
+        background-image: url(./img/svg/cam-white.svg)
+    &_kettle
+        background-image: url(./img/svg/kettle.svg)
+
+    @media screen and (max-width : 570px)
+        width: 35px
+        height: 35px
+
+.event__title
+    font-size: 1.5rem
+    line-height: 1.75rem
+    color: inherit
+    text-align: left
+    margin-left: 17px
+    display: -webkit-box
+    -webkit-line-clamp: 2
+    -webkit-box-orient: vertical
+    overflow: hidden    
+    //Fix for FireFox
+    max-height: 3.5rem
+
+    @include font-size-fluid(14, 24)
+    @include line-height-fluid(17, 28)
+
+.event__main
+    font-size: 1.125rem
+    line-height: 1.3125rem
+    color: inherit
+    text-align: left
+    font-weight: normal
+    display: flex
+    flex-direction: row
+    justify-content: space-between
+
+    @include font-size-fluid(12, 18)
+    @include line-height-fluid(14, 21)
+
+.event__item_s
+    .event__main
+        flex-direction: column
+        justify-content: flex-start
+
+.event__source
+    margin-top: 17px
+    color: inherit
+
+.event__time
+    margin-top: 20px
+    &_float_right
+        float: right
+
+.event__description
+    margin-top: 15px
+    font-size: 1.25rem
+    font-weight: normal
+    line-height: 1.4375rem
+    //make Arial similar to ArtialMT
+    letter-spacing: 0.25px 
+    color: #000000
+    text-align: left
+    transition: font-size 0.1s ease
+
+    @include font-size-fluid(18, 25)
+    @include line-height-fluid(22, 28)
+
+.event__description_big
+    font-size: 1.5rem
+    line-height: 1.75rem
+    font-weight: normal
+    color: #333333
+    text-align: left
+
+    @include font-size-fluid(18, 24)
+    @include line-height-fluid(22, 28)

@@ -1,0 +1,46 @@
+.page__footer
+    &::before
+        content: ''
+        display: block
+        height: 1px
+        width: 100vw
+        background-color: #F0F0F0
+        position: absolute
+        top: 0
+        left: 50%
+        transform: translate(-50%)
+
+    @media screen and (max-width : 768px)
+        &::before
+            display: none
+
+.menu__link
+    font-size: 0.75rem
+    line-height: 0.875rem
+    font-weight: normal
+    color: #858585
+    letter-spacing: 0.01px
+    text-decoration: none
+    text-align: left
+    margin-left: 12px
+    &:first-of-type
+        margin-left: 0
+    &:hover
+        color: red
+
+    @media screen and (max-width : 768px)
+        margin-left: 0
+        margin-top: 10px
+
+.copyright__text
+    font-size: 0.75rem
+    line-height: 0.875rem
+    color: #858585
+    font-weight: normal
+    letter-spacing: 0.01px
+    text-align: left
+
+    @media screen and (max-width : 768px)
+        margin-top: 10px
+        margin-bottom: 0
+    

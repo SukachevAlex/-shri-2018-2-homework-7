@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="robots" content="noindex">
+    <title>Яндекс Дом</title>
+    <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
+    <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
+</head>
+
+<body>
+    <div class="page">
+        <header class="header page__header">
+            <div class="header-area">
+                <div class="logo header__logo">
+                    <a class="logo__link" href="#"></a>
+                </div>
+                <div class="menu header__menu">
+                    <nav class="nav header__nav">
+                        <a class="nav__link nav__link_active" href="#">События</a>
+                        <a class="nav__link" href="#">Сводка</a>
+                        <a class="nav__link" href="#">Устройства</a>
+                        <a class="nav__link" href="#">Сценарии</a>
+                        <a class="nav__link" href="./video_monitoring.html">Видеонаблюдение</a>
+                    </nav>
+                </div>
+                <div class="menu__burger"></div>
+            </div>
+        </header>
+        <main class="main page__main">
+            <div class="main-area">
+                <h1 class="title main__title">Лента событий</h1>
+                <div class="event__list">
+                    <template class="template">
+                        <div class="event__item">
+                            <div class="event__top-line">
+                                <div class="event__info">
+                                    <div class="event__header">
+                                        <div class="event__icon"></div>
+                                        <div class="event__title"></div>
+                                    </div>
+                                    <div class="event__main">
+                                        <div class="event__source"></div>
+                                        <div class="event__time"></div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                            <div class="event__bottom-line">
+                                <div class="event__footer">
+                                        <div class="event__description"></div>
+                                </div>
+                                <div class="event__data">
+                                    <img class="event__graph" src="./img/Richdata.png" alt="Chart">
+                                    <div class="event__thermal">
+                                        <div class="temperature">
+                                            Температура: <span class="temperature__value"></span>
+                                        </div>
+                                        <div class="humidity">
+                                            Влажность: <span class="humidity__value"></span>
+                                        </div>
+                                    </div>
+    
+                                    <div class="player event__player">
+                                        <div class="player__top-line">
+                                            <img class="player__albumcover" src="#" alt="Album cover">
+                                            <div class="player__info">
+                                                <a class="player__track" href="#">
+                                                    <span class="player__artist-name"></span> - <span class="player__track-name"></span>
+                                                </a>
+                                                <div class="player__timeline-inner">
+                                                    <input class="player__timeline" type="range" min="0" value="10" stype="1">
+                                                    <div class="player__time"></div>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="player__controlls">
+                                            <button class="player__controll player__controll_prev"></button>
+                                            <button class="player__controll player__controll_next"></button>   
+                                            <input class="player__volume-control input__controll_range" type="range" min="0" max="100" value="80" step="1">
+                                            <div class="player__volume">
+                                                <span class="player__volume-value"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+    
+                                    <div class="buttons event__buttons"></div>
+    
+                                    <div class="event__image"></div>
+                                    
+                                    <div class="image__info">
+                                        <div class="zoom">
+                                            Приближение: <span class="zoom__value">78%</span>
+                                        </div>
+                                        <div class="brightness">
+                                            Яркость: <span class="brightness__value">50%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </div>
+        </main>
+        <footer class="footer page__footer">
+            <div class="footer-area">
+                <div class="menu footer__menu">
+                    <a class="menu__link" href="#">Помощь</a>
+                    <a class="menu__link" href="#">Обратная связь</a>
+                    <a class="menu__link" href="#">Разработчикам</a>
+                    <a class="menu__link" href="#">Условия использования</a>
+                    <a class="menu__link" href="../assets/license.pdf">Авторские права</a>
+                </div>
+                <div class="copyright footer__copyright">
+                    <p class="copyright__text">&copy; 2001–2017 ООО «<a class="menu__link" href="https://yandex.ru/">Яндекс</a>»</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="<%= htmlWebpackPlugin.files.chunks.main.entry %>"></script>
+</body>
+
+</html>

@@ -1,0 +1,219 @@
+.event__data
+    margin-top: 31px
+
+.event__graph
+    width: 100%
+    height: 100%
+    background-repeat: no-repeat
+    background-size: cover
+    border-radius: 0 0 20px 20px
+
+.event__thermal
+    display: flex
+    justify-content: flex-start
+    font-size: 1.125rem
+    line-height: 1.3125rem
+    font-weight: normal
+    color: #000000
+    text-align: left
+    @include font-size-fluid(14, 18)
+    @include line-height-fluid(16, 21)
+    @media screen and (max-width : 570px)
+        justify-content: space-between
+
+.humidity
+    margin-left: 52px
+
+.temperature__value, .humidity__value
+    font-weight: bold
+
+.player__top-line
+    display: flex
+    justify-content: space-between
+    align-items: center
+    color: #333333
+
+.player__albumcover
+    width: 52px
+    height: 52px
+    border-radius: 8px
+
+.player__info
+    width: 100%
+    margin-left: 15px
+    white-space: nowrap
+    overflow-x: hidden
+    text-overflow: ellipsis
+
+.player__track
+    font-size: 1.25rem
+    font-weight: normal
+    line-height: 1.4375rem
+    color: #000000
+    text-decoration: none
+
+    @include font-size-fluid(18, 20)
+    @include line-height-fluid(21, 23)
+
+.player__timeline-inner
+    display: grid
+    grid-template-columns: 1fr auto
+    align-items: center
+    min-height: 35px
+
+.player__timeline
+    width: 100%
+    margin-top: 10px
+    cursor: pointer
+    appearance: none
+    &:focus
+        outline: none
+    &::-webkit-slider-runnable-track
+        background-color: #979797
+        height: 1px
+    &::-moz-range-track
+        background-color: #979797
+        height: 1px
+    &::-webkit-slider-thumb
+        appearance: none
+        width: 12px
+        height: 20px
+        cursor: pointer
+        background: #D8D8D8
+        border-radius: 4.5px
+        margin-top: -10px
+    &::-moz-range-thumb
+        appearance: none
+        width: 12px
+        height: 20px
+        cursor: pointer
+        background: #D8D8D8
+        border-radius: 4.5px
+        margin-top: -10px
+
+.player__time
+    font-family: Helvetica
+    font-size: 0.875rem
+    font-weight: normal
+    line-height: 1.0625rem
+    color: #A1A1A1
+    opacity: 0.84
+    text-align: left
+    margin-left: 15px
+
+.player__controlls
+    display: grid
+    grid-template-columns: auto auto 1fr auto
+    align-items: center
+    margin-top: 20px
+
+.player__controll
+    width: 52px
+    height: 52px
+    border-radius: 25px
+    border: none
+    margin-left: 25px
+    background-image: url("./img/svg/Prev.svg")
+    background-repeat: no-repeat
+    background-size: 100%
+    background-position: center
+    cursor: pointer
+    &:first-of-type
+        margin-left: 0    
+
+.player__controll_next
+    transform: rotate(180deg)
+
+.input__controll_range
+    width: 100%
+    cursor: pointer
+    appearance: none
+    &:focus
+        outline: none
+    &::-webkit-slider-runnable-track
+        height: 4px
+        background-color: rgba(216,216,216,0.30)
+        border-radius: 2px
+    &::-moz-range-track
+        height: 4px
+        background-color: rgba(216,216,216,0.30)
+        border-radius: 2px
+    &::-webkit-slider-thumb
+        appearance: none
+        width: 16px
+        height: 16px
+        cursor: pointer
+        background: #605757
+        border-radius: 26px
+        margin-top: -7px
+    &::-moz-range-thumb
+        appearance: none
+        width: 16px
+        height: 16px
+        cursor: pointer
+        background: #605757
+        border-radius: 26px
+        margin-top: -7px
+
+.player__volume-control
+    margin-left: 13px
+    
+
+.player__volume-value
+    font-family: Helvetica
+    font-size: 0.875rem
+    font-weight: normal
+    line-height: 1.0625rem
+    color: #A1A1A1
+    opacity: 0.84
+    text-align: left
+    margin-left: 15px
+
+.btn
+    min-width: 132px
+    cursor: pointer
+    background: #E5E5E5
+    border-radius: 8px
+    border: none
+    padding: 15px 0
+    text-align: center
+    font-size: 1.25rem
+    line-height: 23px
+    color: #000000
+    font-weight: bold
+    user-select: none
+    &:hover
+        box-shadow: 0 2px 6px 0 rgba(197,186,186,0.50)
+    @media screen and (max-width : 350px)
+        min-width: 120px    
+
+.event__btn
+    margin-left: 18px
+    &:first-of-type
+        background: #FFD93E
+        margin-left: 0   
+
+.event__image
+    width: 100%
+    height: 100%
+    min-height: 325px
+    border-radius: 20px
+    background-repeat: repeat
+    background-position: center
+    user-select: none
+    touch-action: none
+    webkit-touch-callout: none
+    @media screen and (max-width : 570px)
+        min-height: 250px
+
+.image__info
+    display: none
+    flex-direction: row
+    justify-content: space-between
+    margin-top: 10px
+    color: #333333
+    font-weight: normal
+    @include font-size-fluid(12, 18)
+    @include line-height-fluid(14, 21)
+    @media (-moz-touch-enabled: 1), (pointer:coarse) 
+        display: flex

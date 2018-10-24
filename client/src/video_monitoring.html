@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="robots" content="noindex">
+    <title>Яндекс Дом</title>
+    <link rel="stylesheet" href="<%=htmlWebpackPlugin.files.chunks.main.css %>">
+</head>
+
+<body>
+    <div class="page">
+        <header class="header page__header">
+            <div class="header-area">
+                <div class="logo header__logo">
+                    <a class="logo__link" href="./index.html"></a>
+                </div>
+                <div class="menu header__menu">
+                    <nav class="nav header__nav">
+                        <a class="nav__link" href="./index.html">События</a>
+                        <a class="nav__link" href="#">Сводка</a>
+                        <a class="nav__link" href="#">Устройства</a>
+                        <a class="nav__link" href="#">Сценарии</a>
+                        <a class="nav__link nav__link_active" href="#">Видеонаблюдение</a>
+                    </nav>
+                </div>
+                <div class="menu__burger"></div>
+            </div>
+        </header>
+        <main class="main page__main">
+            <div class="main-area">
+                <h1 class="title main__title">Видеонаблюдение</h1>
+                <div class="camera__list">
+                    <div class="volume-oscilloscope"></div>
+                    <div class="volume-bar"></div>
+                </div>
+                <div class="camera__controlls">
+                    <button class="btn camera__btn">Все камеры</button>
+                    <div class="contrast-controll-inner">
+                        <span class="contrast-controll__name">Контраст</span>
+                        <div class="range-controll-inner range-controll-inner_left">
+                            <input class="range-controll range-controll_contrast input__controll_range" id="input_contrast" type="range" min="0" max="200" value="100" step="1" oninput="output_contrast.value = input_contrast.value">
+                            <output id="output_contrast">100</output>%
+                        </div>
+                    </div>
+                    <div class="brightness-controll-inner">
+                        <span class="brigtness-controll__name">Яркость</span>
+                        <div class="range-controll-inner range-controll-inner_right">
+                            <input class="range-controll range-controll_brightness input__controll_range" id="input_brightness" type="range" min="0" max="200" value="100" step="1" oninput="output_brightness.value = input_brightness.value">
+                            <output id="output_brightness">100</output>%
+                        </div>
+                    </div>
+                    <div class="volume__controll volume__controll_inactive"></div>
+                </div>
+            </div>
+        </main>
+        <footer class="footer page__footer">
+            <div class="footer-area">
+                <div class="menu footer__menu">
+                    <a class="menu__link" href="#">Помощь</a>
+                    <a class="menu__link" href="#">Обратная связь</a>
+                    <a class="menu__link" href="#">Разработчикам</a>
+                    <a class="menu__link" href="#">Условия использования</a>
+                    <a class="menu__link" href="../assets/license.pdf">Авторские права</a>
+                </div>
+                <div class="copyright footer__copyright">
+                    <p class="copyright__text">&copy; 2001–2017 ООО «<a class="menu__link" href="https://yandex.ru/">Яндекс</a>»</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+    <script src="<%= htmlWebpackPlugin.files.chunks.video.entry %>"></script>
+</body>
+
+</html>

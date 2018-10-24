@@ -1,0 +1,17 @@
+@import "variables"
+    
+@mixin font-size-fluid($min-font-size, $max-font-size)
+    @media screen and (max-width : #{$max-vw}px)
+        font-size: calc(#{$min-font-size}px + (#{$max-font-size} - #{$min-font-size}) * ((100vw - #{$min-vw}px) / (#{$max-vw} - #{$min-vw})))
+
+@mixin line-height-fluid($min-line-height, $max-line-height)
+    @media screen and (max-width : #{$max-vw}px)
+        line-height: calc(#{$min-line-height}px + (#{$max-line-height} - #{$min-line-height}) * ((100vw - #{$min-vw}px) / (#{$max-vw} - #{$min-vw})))
+
+@mixin margin-right-fluid($min-margin, $max-margin)
+    @media screen and (max-width : #{$max-vw}px)
+        margin-right: calc(#{$min-margin}px + (#{$max-margin} - #{$min-margin}) * ((100vw - #{$min-vw}px) / (#{$max-vw} - #{$min-vw})))
+
+@mixin margin-left-fluid($min-margin, $max-margin)
+    @media screen and (max-width : #{$max-vw}px)
+        margin-left: calc(#{$min-margin}px + (#{$max-margin} - #{$min-margin}) * ((100vw - #{$min-vw}px) / (#{$max-vw} - #{$min-vw})))

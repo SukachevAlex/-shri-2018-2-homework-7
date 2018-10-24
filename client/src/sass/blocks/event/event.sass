@@ -1,0 +1,105 @@
+@import "event__data"
+@import "event__info"
+    
+.event__item
+    min-width: 200px
+    grid-column: auto / span 2
+    border-radius: 20px
+    background: #fafafa
+    transition: bacground-color, box-shadow 0.2s ease
+    position: relative
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    padding-bottom: 20px
+    outline: none
+    &:hover
+        background-color: #F3F3F3
+        box-shadow: 0 2px 6px 0 rgba(197,186,186,0.50)
+        cursor: pointer
+        //event onhover same color as input
+        .player__volume-control
+            &::-webkit-slider-runnable-track
+                background-color: rgba(216,216,216,0.60)
+            &::-moz-range-track
+                background-color: rgba(216,216,216,0.60)
+        &::before
+            content: ""
+            display: block
+            width: 10px
+            height: 16px
+            position: absolute
+            bottom: 20px
+            right: 20px
+            background-image: url("./img/svg/Next.svg")
+            background-repeat: no-repeat
+            background-position: center
+            background-size: 100%
+            filter: drop-shadow(0px 0px 12px #000000)
+        &::after
+            content: ""
+            display: block
+            width: 14px
+            height: 14px
+            position: absolute
+            top: 20px
+            right: 20px
+            background-image: url("./img/svg/cross.svg")
+            background-repeat: no-repeat
+            background-position: center
+            background-size: 100%
+            filter: drop-shadow(0px 0px 12px #000000)
+   
+.event__item_critical
+    .event__bottom-line
+        padding-top: 5px
+        margin-top: -15px
+    .event__top-line
+        background: #DB5341
+        border-radius: 20px 20px 0 0
+        padding-bottom: 35px
+    &:hover
+        &::before
+            background-image: url("./img/svg/next-white.svg")
+            filter: drop-shadow(0px 0px 5px #000000)
+        &::after
+            background-image: url("./img/svg/cross-white.svg")
+
+.event__item_s
+    grid-column: auto / span 2
+    @media screen and (max-width : 920px)
+        grid-column: auto / span 3
+        .event__main
+            flex-direction: row
+            justify-content: space-between
+    @media screen and (max-width : 510px)
+        grid-column: auto / span 6
+
+.event__item_m
+    grid-column: auto / span 3
+    @media screen and (max-width : 920px)
+        grid-column: auto / span 6
+    @media screen and (max-width : 510px)
+        grid-column: auto / span 6
+
+.event__item_l
+    grid-column: auto / span 4
+    grid-row-end: span 3
+    @media screen and (max-width : 920px)
+        grid-column: auto / span 6
+    @media screen and (max-width : 510px)
+        grid-column: auto / span 6
+
+.event__top-line
+    width: 100%
+    padding: 20px 20px 0
+    border-radius: 20px
+    @media screen and (max-width : 920px)
+        height: 100%
+
+.event__bottom-line
+    width: 100%
+    height: 100%
+    padding: 0 20px 
+    border-radius: 20px
+    background: inherit
