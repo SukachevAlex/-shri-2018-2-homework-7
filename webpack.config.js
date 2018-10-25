@@ -7,8 +7,8 @@ const autoprefixer = require('autoprefixer');
 
 module.exports = {
     entry: {
-        main: path.resolve(__dirname, "./client/src/index.js"),
-        video: path.resolve(__dirname, "./client/src/monitoring.js"),
+        main: path.resolve(__dirname, "./client/src/index.ts"),
+        video: path.resolve(__dirname, "./client/src/monitoring.ts"),
     },
     output: {
         path: path.resolve(__dirname, "dist"),
@@ -18,14 +18,24 @@ module.exports = {
         contentBase: "./dist",
         port: 9000
     },
+    resolve: {
+        // Add `.ts` and `.tsx` as a resolvable extension.
+        extensions: [".ts", ".tsx", ".js"]
+    },
     module: {
-        rules: [{
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader"
-                }
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/
             },
+            // {
+            //     test: /\.js$/,
+            //     exclude: /node_modules/,
+            //     use: {
+            //         loader: "babel-loader"
+            //     }
+            // },
             {
                 test: /\.(sa|c)ss$/,
                 use: [

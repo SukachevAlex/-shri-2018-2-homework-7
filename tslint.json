@@ -1,0 +1,18 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+        "eofline": true,
+        "no-trailing-whitespace": true,
+        "comment-format": true,
+        "quotemark": true,
+        "no-console": true,
+        "one-line": false,
+        "no-consecutive-blank-lines": [true, 2],
+        "curly": true
+    },
+    "rulesDirectory": []
+}
