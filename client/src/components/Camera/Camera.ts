@@ -1,7 +1,9 @@
-const Camera = [];
+import Hls from "hls.js";
 
-(function() {
-    const cameraUrl = getCameraUrl();
+const Camera: Array<HTMLVideoElement> = [];
+
+(function(): void {
+    const cameraUrl: Array<string> = getCameraUrl();
 
     cameraUrl.forEach((element, index, array) => {
         let camera = document.createElement('video');
@@ -15,7 +17,7 @@ const Camera = [];
     });
 })();
 
-function initVideo(video, url) {
+function initVideo(video: HTMLVideoElement, url: string): void {
     if (Hls.isSupported()) {
         let hls = new Hls();
         hls.loadSource(url);
@@ -31,7 +33,7 @@ function initVideo(video, url) {
     }
 }
 
-function getCameraUrl() {
+function getCameraUrl(): Array<string> {
     return [
         'http://184.72.239.149/vod/smil:BigBuckBunny.smil/playlist.m3u8',
         'https://mnmedias.api.telequebec.tv/m3u8/29880.m3u8',

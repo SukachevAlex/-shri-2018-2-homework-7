@@ -1,16 +1,16 @@
 import { Camera } from '../Camera/Camera';
 import { connectStream } from '../AudioAnalyser/AudioAnalyser';
 
-const Canvas = [];
-const controlls = document.querySelector('.camera__controlls');
-const volumeControll = document.querySelector('.volume__controll');
-const oscilloscope = document.querySelector('.volume-oscilloscope');
-const volumeBar = document.querySelector('.volume-bar');
+const Canvas: Array<HTMLCanvasElement> = [];
+const controlls: HTMLElement = document.querySelector('.camera__controlls');
+const volumeControll: HTMLElement = document.querySelector('.volume__controll');
+const oscilloscope: HTMLElement = document.querySelector('.volume-oscilloscope');
+const volumeBar: HTMLElement = document.querySelector('.volume-bar');
 
-(function() {
+(function(): void {
     for (let i = 0; i < Camera.length; i++) {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
+        const canvas: HTMLCanvasElement = document.createElement('canvas');
+        const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
         canvas.className = `camera camera-${i+1} camera_muted`;
         canvas.width = 640;
         canvas.height = 480;
@@ -19,7 +19,7 @@ const volumeBar = document.querySelector('.volume-bar');
             contrast(1)
         `;
 
-        canvas.addEventListener('click', function() {
+        canvas.addEventListener('click', function(): void {
             canvas.classList.toggle('camera_open');
             controlls.classList.toggle('camera__controlls_visible');
             canvas.classList.add('camera_muted');
@@ -28,8 +28,8 @@ const volumeBar = document.querySelector('.volume-bar');
             volumeBar.classList.toggle('volume-bar_visible');
 
             if (this.classList.contains('camera_open')) {
-                let num = this.className.replace(/\D/g, '');
-                connectStream(Camera[num - 1], num);
+                let num: number = parseInt(this.className.replace(/\D/g, ''));
+                connectStream(Camera[--num], num);
             }
         });
 
@@ -46,28 +46,28 @@ const volumeBar = document.querySelector('.volume-bar');
 
 })();
 
-function toggleCamera() {
-    const camera = document.querySelector('.camera_open');
+function toggleCamera(): void {
+    const camera: HTMLElement = document.querySelector('.camera_open');
     camera.classList.add('camera_muted');
     camera.classList.remove('camera_open');
     controlls.classList.remove('camera__controlls_visible');
 }
 
-function changeContrast() {
-    const canvas = document.querySelector('.camera_open');
-    const ctx = canvas.getContext('2d');
+function changeContrast(): void {
+    const canvas: HTMLCanvasElement = document.querySelector('.camera_open');
+    const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
     ctx.filter = `${ctx.filter.trim().split(' ').shift()} contrast(${this.value / 100})`;
 }
 
-function changeBrightness() {
-    const canvas = document.querySelector('.camera_open');
-    const ctx = canvas.getContext('2d');
+function changeBrightness(): void {
+    const canvas: HTMLCanvasElement = document.querySelector('.camera_open');
+    const ctx: CanvasRenderingContext2D = canvas.getContext('2d');
     ctx.filter = `brightness(${this.value / 100}) ${ctx.filter.trim().split(' ').pop()}`;
 }
 
-function changeVolume() {
+function changeVolume(): void {
     this.classList.toggle('volume__controll_inactive');
-    const canvas = document.querySelector('.camera_open');
+    const canvas: HTMLCanvasElement = document.querySelector('.camera_open');
     canvas.classList.toggle('camera_muted');
 }
 

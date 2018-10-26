@@ -1,21 +1,21 @@
 import { Camera } from '../Camera/Camera';
 
-const graph = document.querySelector('.volume-oscilloscope');
-const volumeBar = document.querySelector('.volume-bar');
-const fftConstant = 2048;
-const smoothConstant = 0.5;
-let audioCtx = null;
-let analyser = null;
-let gainNode = null;
-let bufferLength = null;
-let dataArray = null;
-let canvas = null;
-let canvasVolume = null;
-let ctx = null;
-let ctxVolume = null;
+const graph: HTMLElement = document.querySelector('.volume-oscilloscope');
+const volumeBar: HTMLElement = document.querySelector('.volume-bar');
+const fftConstant: number = 2048;
+const smoothConstant: number = 0.5;
+let audioCtx: AudioContext = null;
+let analyser: AnalyserNode = null;
+let gainNode: AudioNode = null;
+let bufferLength: number = null;
+let dataArray: Uint8Array = null;
+let canvas: HTMLCanvasElement = null;
+let ctx: CanvasRenderingContext2D = null;
+let canvasVolume: HTMLCanvasElement = null;
+let ctxVolume: CanvasRenderingContext2D = null;
 let sources = new Map();
 
-export function initAudioVizualizer() {
+export function initAudioVizualizer(): void {
     canvas = document.createElement('canvas');
     ctx = canvas.getContext('2d');
     canvas.width = 200;
@@ -29,9 +29,9 @@ export function initAudioVizualizer() {
     volumeBar.appendChild(canvasVolume);
 }
 
-export function initAudioAnalyser() {
+export function initAudioAnalyser(): void {
 
-    if (!isAudioContextAvailable) {
+    if (!getAudioContext(window)) {
         return;
     }
 
@@ -47,7 +47,7 @@ export function initAudioAnalyser() {
     }
 }
 
-function draw() {
+function draw(): void {
     if (graph.classList.contains('volume-oscilloscope_visible')) {
         requestAnimationFrame(draw);
 
@@ -59,11 +59,15 @@ function draw() {
     }
 }
 
-function isAudioContextAvailable() {
-    return Boolean(window.AudioContext || window.webkitAudioContext);
+function getAudioContext(obj: any): obj is {
+    AudioContext: AudioContext,
+    webkitAudioContext: AudioContext,
+} {
+    return obj.AudioContext || obj.webkitAudioContext;
 }
 
-export function connectStream(stream, num) {
+
+export function connectStream(stream: HTMLVideoElement, num: number): void {
     if (!sources.get(num)) {
         sources.set(num, audioCtx.createMediaElementSource(stream));
     }
@@ -75,7 +79,7 @@ export function connectStream(stream, num) {
     draw();
 }
 
-function drawVolumeBar() {
+function drawVolumeBar(): void {
     ctxVolume.clearRect(0, 0, canvasVolume.width, canvasVolume.height);
     ctxVolume.fillStyle = 'rgba(0, 0, 0, .15)';
     ctxVolume.fillRect(0, 0, canvasVolume.width, canvasVolume.height);
@@ -85,14 +89,14 @@ function drawVolumeBar() {
     ctxVolume.strokeStyle = "#fafafa";
     ctxVolume.moveTo(canvasVolume.width / 2, canvasVolume.height)
 
-    let max = 0;
+    let max: number = 0;
     dataArray.forEach(element => {
         if (element > max) {
             max = element;
         }
     });
 
-    let normalizeValue = 128 / max;
+    let normalizeValue: number = 128 / max;
 
     ctxVolume.lineTo(canvasVolume.width / 2, Math.round(canvasVolume.height * normalizeValue));
     ctxVolume.stroke();

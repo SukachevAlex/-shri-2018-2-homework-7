@@ -16,6 +16,7 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "@types/hls.js": "^0.10.2",
         "autoprefixer": "^9.3.1",
         "babel-core": "^6.26.3",
         "babel-loader": "^7.1.4",
