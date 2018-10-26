@@ -19,7 +19,7 @@ const Camera: Array<HTMLVideoElement> = [];
 
 function initVideo(video: HTMLVideoElement, url: string): void {
     if (Hls.isSupported()) {
-        let hls = new Hls();
+        let hls: Hls = new Hls();
         hls.loadSource(url);
         hls.attachMedia(video);
         hls.on(Hls.Events.MANIFEST_PARSED, function() {

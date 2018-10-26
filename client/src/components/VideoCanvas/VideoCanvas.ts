@@ -51,6 +51,7 @@ function toggleCamera(): void {
     camera.classList.add('camera_muted');
     camera.classList.remove('camera_open');
     controlls.classList.remove('camera__controlls_visible');
+    volumeBar.classList.remove('volume-bar_visible');
 }
 
 function changeContrast(): void {
