@@ -4,6 +4,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CleanWebpackPlugin = require("clean-webpack-plugin");
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const TSLintPlugin = require('tslint-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -19,7 +20,6 @@ module.exports = {
         port: 9000
     },
     resolve: {
-        // Add `.ts` and `.tsx` as a resolvable extension.
         extensions: [".ts", ".tsx", ".js"]
     },
     module: {
@@ -104,6 +104,9 @@ module.exports = {
         new CopyWebpackPlugin([
             { from: './client/src/img', to: 'img' },
             { from: './client/src/data', to: 'data' }
-        ])
+        ]),
+        new TSLintPlugin({
+            files: ['./src/**/*.ts']
+        })
     ]
 }

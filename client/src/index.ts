@@ -1,5 +1,5 @@
 import './style.sass';
-import { generateEvents } from './components/Event/Event';
+import { generateEvents, CustomEvents } from './components/Event/Event';
 
 (function() {
 
@@ -14,13 +14,15 @@ import { generateEvents } from './components/Event/Event';
 
 })();
 
-function supportsTemplate() {
+function supportsTemplate(): Boolean {
     return 'content' in document.createElement('template');
 }
 
-function initEvents(data) {
+function initEvents(data: Array<CustomEvents>): void {
     if (supportsTemplate) {
-        data.forEach(el => generateEvents(el));
+        for (let key in data) {
+            generateEvents(data[key]);
+        }
     } else {
         console.log('error');
     }

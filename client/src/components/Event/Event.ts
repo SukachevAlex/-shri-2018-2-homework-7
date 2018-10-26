@@ -1,24 +1,39 @@
 import {mouseDown, mouseMove, mouseUp} from '../PointerEvents/PointerEvents';
 
-const eventSizes = {
+interface EventSizes {
+    [size: string]:  string
+};
+
+const eventSizes: EventSizes = {
     's': 'event__item_s',
     'm': 'event__item_m',
     'l': 'event__item_l'
 };
 
-export function generateEvents(events) {
+export interface CustomEvents {
+    type: string, 
+    title: string, 
+    source: string, 
+    time : string, 
+    description : string | null, 
+    icon : string, 
+    size : string, 
+    data : Data
+}
 
-    const t = document.querySelector('.template');
-    const template = document.importNode(t.content, true);
+export function generateEvents(events: CustomEvents | null): void {
+    
+    const t: HTMLTemplateElement = document.querySelector('.template');
+    const template: any = document.importNode(t.content, true);
 
-    const eventList = document.querySelector('.event__list');
-    const eventItem = template.querySelector('.event__item');
-    const eventIcon = template.querySelector('.event__icon');
-    const eventTitle = template.querySelector('.event__title');
-    const eventSource = template.querySelector('.event__source');
-    const eventTime = template.querySelector('.event__time');
-    const eventDescription = template.querySelector('.event__description');
-    const eventData = template.querySelector('.event__data');
+    const eventList: HTMLElement | null = document.querySelector('.event__list');
+    const eventItem: HTMLElement = template.querySelector('.event__item');
+    const eventIcon: HTMLElement = template.querySelector('.event__icon');
+    const eventTitle: HTMLElement = template.querySelector('.event__title');
+    const eventSource : HTMLElement = template.querySelector('.event__source');
+    const eventTime: HTMLElement = template.querySelector('.event__time');
+    const eventDescription: HTMLElement = template.querySelector('.event__description');
+    const eventData: HTMLElement = template.querySelector('.event__data');
 
     let {type, title, source, time, description, icon, size, data} = events;
 
@@ -49,16 +64,29 @@ export function generateEvents(events) {
         eventData.remove();
     }
 
-    eventList.appendChild(template);
+    eventList && eventList.appendChild(template);
 }
 
-function generateData(template, icon, data) {
-    const eventGraph = template.querySelector('.event__graph');
-    const eventThermal = template.querySelector('.event__thermal');
-    const eventPlayer = template.querySelector('.event__player');
-    const eventButtons = template.querySelector('.event__buttons');
-    const eventImage = template.querySelector('.event__image');
-    const imageInfo = template.querySelector('.image__info');
+interface Data {
+    temperature: number,
+    humidity: number,
+    type: string,
+    albumcover: string,
+    artist: string,
+    track: {name: string, length: string},
+    volume: number,
+    buttons: Array<string>,
+    image: string
+}
+
+function generateData(template: HTMLTemplateElement, icon: string, data: Data): void {
+
+    const eventGraph: HTMLElement = template.querySelector('.event__graph');
+    const eventThermal: HTMLElement = template.querySelector('.event__thermal');
+    const eventPlayer:  any = template.querySelector('.event__player');
+    const eventButtons: HTMLElement = template.querySelector('.event__buttons');
+    const eventImage: HTMLElement = template.querySelector('.event__image');
+    const imageInfo: HTMLElement = template.querySelector('.image__info');
 
     if (icon === 'stats') {
         // create graph chart.js
@@ -87,11 +115,11 @@ function generateData(template, icon, data) {
     if (icon === 'fridge') {
         if (data.buttons) {
             let html = '';
-            data.buttons.forEach((el, index, arr) => {
+            for (let i = 0; i < data.buttons.length; i++) {
                 html += `
-                    <button class="btn event__btn">${data.buttons[index]}</button>
+                    <button class="btn event__btn">${data.buttons[i]}</button>
                 `;
-            });
+            }
             eventButtons.innerHTML = html;
         }
     } else {
@@ -102,7 +130,6 @@ function generateData(template, icon, data) {
 
         eventImage.style.backgroundImage = `url(./img/${data.image})`;
         eventImage.style.backgroundPosition = '0 0';
-        // like on mockup
         eventImage.style.backgroundSize = '178%';
         eventImage.style.filter = 'brightness(50%)';
         eventImage.addEventListener('pointerdown', mouseDown.bind(null, eventImage));
