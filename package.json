@@ -23,6 +23,7 @@
         "babel-preset-env": "^1.7.0",
         "clean-webpack-plugin": "^0.1.19",
         "copy-webpack-plugin": "^4.5.2",
+        "cors": "^2.8.4",
         "css-loader": "^1.0.0",
         "eslint": "^5.6.1",
         "eslint-config-yandex": "^1.0.6",

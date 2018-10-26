@@ -1,12 +1,17 @@
 const express = require('express');
 const router = express.Router();
-const startingDate = new Date();
-const { getDiffBetweenDates, msToReadableTime } = require('../helpers/date');
+const startingTime = new Date();
 
 router
-    .all('/status', (req, res) => {
-        let diff = getDiffBetweenDates(startingDate, new Date());
-        res.send(msToReadableTime(diff));
+    .all('/', (req, res) => {
+        res.status(200).send(diffTime());
     })
+
+const diffTime = () => {
+    const currTime = new Date();
+    const diff = new Date();
+    diff.setTime(currTime - startingTime);
+    return diff.toLocaleTimeString('en-GB', {timeZone: 'UTC'});
+}
 
 module.exports = router;
