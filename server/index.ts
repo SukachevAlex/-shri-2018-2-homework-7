@@ -4,7 +4,7 @@ import { statusRouter } from './routes/status';
 import { eventsRouter } from './routes/events';
 
 const app: express.Application = express();
-const port: string = process.env.PORT || '5002';
+const port: string = process.env.PORT || '8000';
 
 
 app.use(express.json());

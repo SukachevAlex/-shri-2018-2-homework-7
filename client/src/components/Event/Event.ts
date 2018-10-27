@@ -24,7 +24,7 @@ export interface CustomEvents {
 export function generateEvents(events: CustomEvents | null): void {
     
     const t: HTMLTemplateElement = document.querySelector('.template');
-    const template: any = document.importNode(t.content, true);
+    const template: DocumentFragment = document.importNode(t.content, true);
 
     const eventList: HTMLElement | null = document.querySelector('.event__list');
     const eventItem: HTMLElement = template.querySelector('.event__item');
@@ -79,11 +79,11 @@ interface Data {
     image: string
 }
 
-function generateData(template: HTMLTemplateElement, icon: string, data: Data): void {
+function generateData(template: DocumentFragment, icon: string, data: Data): void {
 
     const eventGraph: HTMLElement = template.querySelector('.event__graph');
     const eventThermal: HTMLElement = template.querySelector('.event__thermal');
-    const eventPlayer:  any = template.querySelector('.event__player');
+    const eventPlayer:  HTMLElement = template.querySelector('.event__player');
     const eventButtons: HTMLElement = template.querySelector('.event__buttons');
     const eventImage: HTMLElement = template.querySelector('.event__image');
     const imageInfo: HTMLElement = template.querySelector('.image__info');
@@ -102,11 +102,11 @@ function generateData(template: HTMLTemplateElement, icon: string, data: Data): 
     }
 
     if (icon === 'music') {
-        eventPlayer.querySelector('.player__albumcover').src = data.albumcover;
+        eventPlayer.querySelector<HTMLImageElement>('.player__albumcover').src = data.albumcover;
         eventPlayer.querySelector('.player__artist-name').textContent = data.artist;
         eventPlayer.querySelector('.player__track-name').textContent = data.track.name;
         eventPlayer.querySelector('.player__time').textContent = data.track.length;
-        eventPlayer.querySelector('.player__timeline').max = data.track.length;
+        eventPlayer.querySelector<HTMLInputElement>('.player__timeline').max = data.track.length;
         eventPlayer.querySelector('.player__volume-value').textContent = `${data.volume}%`;
     } else {
         eventPlayer.remove();
