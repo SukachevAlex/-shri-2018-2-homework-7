@@ -2,6 +2,7 @@ import express, { NextFunction, Response, Request } from 'express';
 import cors from 'cors';
 import { statusRouter } from './routes/status';
 import { eventsRouter } from './routes/events';
+import { errorData } from 'hls.js';
 
 const app: express.Application = express();
 const port: string = process.env.PORT || '8000';
@@ -22,7 +23,7 @@ app.use((req: Request, res: Response, next: NextFunction) => {
 });
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-	process.stdout.write(err.stack);
+	process.stdout.write(err.stack + '');
 	res.status(500).send('Error');
 });
 

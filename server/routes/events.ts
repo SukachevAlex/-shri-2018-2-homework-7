@@ -12,7 +12,7 @@ const types: Array<string> = [
 
 export const eventsRouter: Router = express.Router()
   .get('/', (req: Request, res: Response, next: NextFunction) => {
-    let filter: Array<string>;
+    let filter: Array<string> = [];
     let limit: number = req.query.limit && parseInt(req.query.limit);
     let offset: number = req.query.offset && parseInt(req.query.offset);
 
@@ -28,7 +28,7 @@ export const eventsRouter: Router = express.Router()
     sendEvents(res, filter, limit, offset, next);
   })
   .post('/', (req: Request, res: Response, next: NextFunction) => {
-    let filter: Array<string>;
+    let filter: Array<string> = [];
     let limit = req.body.limit && parseInt(req.body.limit);
     let offset = req.body.offset && parseInt(req.body.offset);
 
