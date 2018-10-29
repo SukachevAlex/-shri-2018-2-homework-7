@@ -23,16 +23,16 @@ export interface CustomEvents {
 
 export function generateEvents(events: CustomEvents | null): void {
     const t: HTMLTemplateElement | null = document.querySelector('.template');
-    const template: DocumentFragment | null = document.importNode(t!.content, true);
+    const template = t && document.importNode(t.content, true);
 
     const eventList: HTMLElement | null = document.querySelector('.event__list');
-    const eventItem: HTMLElement | null = template.querySelector('.event__item');
-    const eventIcon: HTMLElement | null = template.querySelector('.event__icon');
-    const eventTitle: HTMLElement | null = template.querySelector('.event__title');
-    const eventSource : HTMLElement | null = template.querySelector('.event__source');
-    const eventTime: HTMLElement | null = template.querySelector('.event__time');
-    const eventDescription: HTMLElement | null = template.querySelector('.event__description');
-    const eventData: HTMLElement | null = template.querySelector('.event__data');
+    const eventItem: HTMLElement | null = template && template.querySelector('.event__item');
+    const eventIcon: HTMLElement | null = template && template.querySelector('.event__icon');
+    const eventTitle: HTMLElement | null = template && template.querySelector('.event__title');
+    const eventSource : HTMLElement | null = template && template.querySelector('.event__source');
+    const eventTime: HTMLElement | null = template && template.querySelector('.event__time');
+    const eventDescription: HTMLElement | null = template && template.querySelector('.event__description');
+    const eventData: HTMLElement | null = template && template.querySelector('.event__data');
 
     if (events) {
         let {type, title, source, time, description, icon, size, data} = events;
@@ -66,10 +66,8 @@ export function generateEvents(events: CustomEvents | null): void {
             eventData && eventData.remove();
         }
     
-        eventList && eventList.appendChild(template);
+        eventList && eventList.appendChild(template as Node);
     }
-
-
 }
 
 interface Data {
@@ -84,14 +82,14 @@ interface Data {
     image: string
 }
 
-function generateData(template: DocumentFragment, icon: string, data: Data): void {
+function generateData(template: DocumentFragment | null, icon: string, data: Data): void {
 
-    const eventGraph: HTMLElement | null = template.querySelector('.event__graph');
-    const eventThermal: HTMLElement | null = template.querySelector('.event__thermal');
-    const eventPlayer:  HTMLElement | null = template.querySelector('.event__player');
-    const eventButtons: HTMLElement | null = template.querySelector('.event__buttons');
-    const eventImage: HTMLElement | null = template.querySelector('.event__image');
-    const imageInfo: HTMLElement | null = template.querySelector('.image__info');
+    const eventGraph: HTMLElement | null = template && template.querySelector('.event__graph');
+    const eventThermal: HTMLElement | null = template && template.querySelector('.event__thermal');
+    const eventPlayer:  HTMLElement | null = template && template.querySelector('.event__player');
+    const eventButtons: HTMLElement | null = template && template.querySelector('.event__buttons');
+    const eventImage: HTMLElement | null = template && template.querySelector('.event__image');
+    const imageInfo: HTMLElement | null = template && template.querySelector('.image__info');
 
     if (icon === 'stats') {
         // create graph chart.js

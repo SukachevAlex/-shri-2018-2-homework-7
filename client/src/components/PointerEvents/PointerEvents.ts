@@ -3,8 +3,7 @@ interface Gesture {
     startY: number,
     startLength: number,
     startAngle: number,
-    prevX: string | null,
-    prevY: string | null
+    prevX: number
   }
   
   let gesture: Gesture = {
@@ -12,8 +11,7 @@ interface Gesture {
       startY: 0,
       startLength: 0,
       startAngle: 0,
-      prevX: '0',
-      prevY: '0'
+      prevX: 0
   };
   
   let events: Array<PointerEvent> = [];
@@ -26,10 +24,9 @@ interface Gesture {
           startY: e.y,
           startLength: 1,
           startAngle: 0,
-          prevX: e.target && (e.target as HTMLElement).style.backgroundPositionX,
-          prevY: e.target && (e.target as HTMLElement).style.backgroundPositionY,
+          prevX: parseInt((e.target as HTMLElement).style.backgroundPositionX || '')  
       };
-  
+      
       if (events.length === 2) {
           let dx= events[1].clientX - events[0].clientX;
           let dy = events[1].clientY - events[0].clientY;
@@ -42,8 +39,7 @@ interface Gesture {
   }
   
   export function mouseMove(imageInfo: HTMLElement, e: PointerEvent): void {
-      
-  
+       
     for (let i = 0; i < events.length; i++) {
         if (e.pointerId === events[i].pointerId) {
             events[i] = e;
@@ -57,13 +53,8 @@ interface Gesture {
         const limit= 5;
 
         if (events.length === 1) {
-            const dx= e.x - gesture.startX;
-            // const dy = e.y - gesture.startY;
-
-            if (gesture.prevX) {
-                (e.target as HTMLElement).style.backgroundPositionX = `${gesture.prevX + dx}px`;
-            }
-            // e.target.style.backgroundPositionY = `${gesture.prevY + dy}px`;
+            const dx = e.x - gesture.startX;
+            (e.target as HTMLElement).style.backgroundPositionX = `${gesture.prevX + dx}px`;
         } else if (events.length === 2) {
             const dx = events[1].clientX - events[0].clientX;
             const dy = events[1].clientY - events[0].clientY;

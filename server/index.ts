@@ -2,7 +2,6 @@ import express, { NextFunction, Response, Request } from 'express';
 import cors from 'cors';
 import { statusRouter } from './routes/status';
 import { eventsRouter } from './routes/events';
-import { errorData } from 'hls.js';
 
 const app: express.Application = express();
 const port: string = process.env.PORT || '8000';

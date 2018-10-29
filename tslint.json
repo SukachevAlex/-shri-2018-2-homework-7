@@ -5,14 +5,11 @@
     ],
     "jsRules": {},
     "rules": {
-        "eofline": true,
-        "no-trailing-whitespace": true,
-        "comment-format": true,
-        "quotemark": true,
-        "no-console": true,
-        "one-line": false,
-        "no-consecutive-blank-lines": [true, 2],
-        "curly": true
+        "indent": [true, "spaces", 2],
+        "quotemark": [true, "single"],
+        "semicolon": [true, "always", "ignore-interfaces"],
+        "ordered-imports": false,
+        "no-unused-expression": true
     },
     "rulesDirectory": []
 }

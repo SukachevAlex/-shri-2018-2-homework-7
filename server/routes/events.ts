@@ -57,8 +57,7 @@ interface Element {
 function sendEvents(res: Response, filter: Array<string>, limit: number, offset: number, next: NextFunction): void {
   readFileAsync(path.resolve('./server/data/events.json'), {encoding: 'utf-8'})
       .then((data: string) => {
-        console.log(data);
-        let filteredEvents: Array<Object> = JSON.parse(data).events;
+        let filteredEvents: Array<Element> = JSON.parse(data).events;
         if (filter) {
           filteredEvents = filteredEvents.filter((element: Element) => filter.includes(element.type));
         }

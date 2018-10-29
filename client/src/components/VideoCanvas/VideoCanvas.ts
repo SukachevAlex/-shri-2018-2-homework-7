@@ -53,26 +53,4 @@ function toggleCamera(): void {
     volumeBar && volumeBar.classList.remove('volume-bar_visible');
 }   
 
-function changeContrast(): void {
-    const canvas: HTMLCanvasElement | null = document.querySelector('.camera_open');
-    const ctx: CanvasRenderingContext2D | null = canvas && canvas.getContext('2d');
-    if (ctx) {
-        ctx.filter = `${ctx.filter.trim().split(' ').shift()} contrast(${this.value / 100})`;
-    }
-}
-
-function changeBrightness(): void {
-    const canvas: HTMLCanvasElement | null = document.querySelector('.camera_open');
-    const ctx: CanvasRenderingContext2D | null = canvas && canvas.getContext('2d');
-    if (ctx) {
-        ctx.filter = `brightness(${this.value / 100}) ${ctx.filter.trim().split(' ').pop()}`;
-    }
-}
-
-function changeVolume(): void {
-    this.classList.toggle('volume__controll_inactive');
-    const canvas: HTMLCanvasElement | null = document.querySelector('.camera_open');
-    canvas && canvas.classList.toggle('camera_muted');
-}
-
-export { Canvas, toggleCamera, changeContrast, changeBrightness, changeVolume };
+export { Canvas, toggleCamera };

@@ -52,10 +52,11 @@ function draw(): void {
         requestAnimationFrame(draw);
 
         bufferLength = analyser && analyser.frequencyBinCount;
-        if (analyser && bufferLength && dataArray) {
+        if (analyser && bufferLength) {
             dataArray = new Uint8Array(bufferLength);
             analyser.getByteTimeDomainData(dataArray);
         }
+        
 
         drawVolumeBar();
     }
@@ -84,11 +85,11 @@ export function connectStream(stream: HTMLVideoElement, num: number): void {
 }
 
 function drawVolumeBar(): void {
+
     if (ctxVolume && canvasVolume) {
         ctxVolume.clearRect(0, 0, canvasVolume.width, canvasVolume.height);
         ctxVolume.fillStyle = 'rgba(0, 0, 0, .15)';
         ctxVolume.fillRect(0, 0, canvasVolume.width, canvasVolume.height);
-    
         ctxVolume.beginPath();
         ctxVolume.lineWidth = canvasVolume.width;
         ctxVolume.strokeStyle = "#fafafa";

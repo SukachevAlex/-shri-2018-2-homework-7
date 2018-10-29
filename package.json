@@ -11,7 +11,7 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "eslint": "eslint ./client/src/**/*.js --quiet",
         "deploy": "git subtree push --prefix dist origin gh-pages",
-        "tslint": "tslint ./client/src/**/*.ts"
+        "tslint": "tslint ./client/**/*.ts ./server/**/*.ts"
     },
     "author": "",
     "license": "ISC",

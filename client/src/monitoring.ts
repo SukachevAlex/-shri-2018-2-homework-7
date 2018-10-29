@@ -1,10 +1,4 @@
-import {
-    Canvas,
-    toggleCamera,
-    changeContrast,
-    changeBrightness,
-    changeVolume
-} from './components/VideoCanvas/VideoCanvas';
+import {Canvas, toggleCamera } from './components/VideoCanvas/VideoCanvas';
 import {initAudioAnalyser, initAudioVizualizer} from './components/AudioAnalyser/AudioAnalyser';
 import './style.sass';
 
@@ -21,9 +15,25 @@ const volumeControll: HTMLElement | null = document.querySelector('.volume__cont
     }
 
     cameraBackBtn && cameraBackBtn.addEventListener('click', toggleCamera);
-    contrastControll && contrastControll.addEventListener('input', changeContrast);
-    brightnessControll && brightnessControll.addEventListener('input', changeBrightness);
-    volumeControll && volumeControll.addEventListener('click', changeVolume);
+    contrastControll && contrastControll.addEventListener('input', function() {
+        const canvas: HTMLCanvasElement | null = document.querySelector('.camera_open');
+        const ctx: CanvasRenderingContext2D | null = canvas && canvas.getContext('2d');
+        if (ctx) {
+            ctx.filter = `${ctx.filter.trim().split(' ').shift()} contrast(${Number((this as HTMLInputElement).value) / 100})`;
+        }
+    });
+    brightnessControll && brightnessControll.addEventListener('input', function() {
+        const canvas: HTMLCanvasElement | null = document.querySelector('.camera_open');
+        const ctx: CanvasRenderingContext2D | null = canvas && canvas.getContext('2d');
+        if (ctx) {
+            ctx.filter = `brightness(${Number((this as HTMLInputElement).value) / 100}) ${ctx.filter.trim().split(' ').pop()}`;
+        }
+    });
+    volumeControll && volumeControll.addEventListener('click', function() {
+        this.classList.toggle('volume__controll_inactive');
+        const canvas: HTMLCanvasElement | null = document.querySelector('.camera_open');
+        canvas && canvas.classList.toggle('camera_muted');
+    });
 
     initAudioAnalyser();
     initAudioVizualizer();
