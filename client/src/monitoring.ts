@@ -9,7 +9,7 @@ const brightnessControll: HTMLElement | null = document.querySelector('.range-co
 const contrastControll: HTMLElement | null = document.querySelector('.range-controll_contrast');
 const volumeControll: HTMLElement | null = document.querySelector('.volume__controll');
 
-(function (): void {
+((): void => {
     for (let i = 0; i < Canvas.length; i++) {
         cameraList && cameraList.appendChild(Canvas[i]);
     }
@@ -19,14 +19,16 @@ const volumeControll: HTMLElement | null = document.querySelector('.volume__cont
         const canvas: HTMLCanvasElement | null = document.querySelector('.camera_open');
         const ctx: CanvasRenderingContext2D | null = canvas && canvas.getContext('2d');
         if (ctx) {
-            ctx.filter = `${ctx.filter.trim().split(' ').shift()} contrast(${Number((this as HTMLInputElement).value) / 100})`;
+            ctx.filter = `${ctx.filter.trim().split(' ').shift()} contrast(
+                ${Number((this as HTMLInputElement).value) / 100})`;
         }
     });
     brightnessControll && brightnessControll.addEventListener('input', function() {
         const canvas: HTMLCanvasElement | null = document.querySelector('.camera_open');
         const ctx: CanvasRenderingContext2D | null = canvas && canvas.getContext('2d');
         if (ctx) {
-            ctx.filter = `brightness(${Number((this as HTMLInputElement).value) / 100}) ${ctx.filter.trim().split(' ').pop()}`;
+            ctx.filter = `brightness(${Number((this as HTMLInputElement).value) / 100}) ${
+                ctx.filter.trim().split(' ').pop()}`;
         }
     });
     volumeControll && volumeControll.addEventListener('click', function() {

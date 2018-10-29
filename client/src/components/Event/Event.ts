@@ -1,16 +1,16 @@
 import {mouseDown, mouseMove, mouseUp} from '../PointerEvents/PointerEvents';
 
-interface EventSizes {
+interface IEventSizes {
     [size: string]:  string
 };
 
-const eventSizes: EventSizes = {
+const eventSizes: IEventSizes = {
     's': 'event__item_s',
     'm': 'event__item_m',
     'l': 'event__item_l'
 };
 
-export interface CustomEvents {
+export interface ICustomEvents {
     type: string, 
     title: string, 
     source: string, 
@@ -21,7 +21,7 @@ export interface CustomEvents {
     data : Data
 }
 
-export function generateEvents(events: CustomEvents | null): void {
+export function generateEvents(events: ICustomEvents | null): void {
     const t: HTMLTemplateElement | null = document.querySelector('.template');
     const template = t && document.importNode(t.content, true);
 
@@ -78,7 +78,7 @@ interface Data {
     artist: string,
     track: {name: string, length: string},
     volume: number,
-    buttons: Array<string>,
+    buttons: string[],
     image: string
 }
 

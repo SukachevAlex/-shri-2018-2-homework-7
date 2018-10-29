@@ -14,7 +14,7 @@ interface Gesture {
       prevX: 0
   };
   
-  let events: Array<PointerEvent> = [];
+  let events: PointerEvent[] = [];
   
   export function mouseDown(eventImage: HTMLElement, e: PointerEvent): void {
   
@@ -24,7 +24,7 @@ interface Gesture {
           startY: e.y,
           startLength: 1,
           startAngle: 0,
-          prevX: parseInt((e.target as HTMLElement).style.backgroundPositionX || '')  
+          prevX: parseInt((e.target as HTMLElement).style.backgroundPositionX || '', 10)  
       };
       
       if (events.length === 2) {
@@ -62,7 +62,7 @@ interface Gesture {
             if (Math.abs(gesture.startAngle - getAngle(dx, dy)) <= limit) {
                 let length = getLength(dx, dy) - gesture.startLength;
                 let zoomPrev = e.target && (e.target as HTMLElement).style.backgroundSize;
-                let currZoom = zoomPrev && Math.min(400, Math.max(100, parseInt(zoomPrev + length / fluency)));
+                let currZoom = zoomPrev && Math.min(400, Math.max(100, parseInt(zoomPrev + length / fluency, 10)));
                 (e.target as HTMLElement).style.backgroundSize = `${currZoom}%`;
                 if(zoomField && currZoom) {
                     zoomField.textContent = `${currZoom - 100}%`;
@@ -70,7 +70,7 @@ interface Gesture {
             } else {
                 let angle = gesture.startAngle - getAngle(dx, dy);
                 let brightPrev =  e.target && (e.target as HTMLElement).style.filter!.match(/\d+/)![0];
-                let brightCurr = brightPrev && Math.min(100, Math.max(0, parseInt(brightPrev + angle / 20)));
+                let brightCurr = brightPrev && Math.min(100, Math.max(0, parseInt(brightPrev + angle / 20, 10)));
                 if (brightnessField) {
                     brightnessField.textContent = `${brightCurr}%`;
                 }

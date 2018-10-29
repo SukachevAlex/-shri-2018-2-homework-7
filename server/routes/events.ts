@@ -5,16 +5,16 @@ import path from 'path';
 const { promisify } = require('util');
 const readFileAsync = promisify(fs.readFile);
 
-const types: Array<string> = [
+const types: string[] = [
   'info',
-  'critical'
+  'critical',
 ];
 
 export const eventsRouter: Router = express.Router()
   .get('/', (req: Request, res: Response, next: NextFunction) => {
-    let filter: Array<string> = [];
-    let limit: number = req.query.limit && parseInt(req.query.limit);
-    let offset: number = req.query.offset && parseInt(req.query.offset);
+    let filter: string[] = [];
+    const limit: number = req.query.limit && parseInt(req.query.limit, 10);
+    const offset: number = req.query.offset && parseInt(req.query.offset, 10);
 
     if (req.query.type) {
       filter = req.query.type.split(':');
@@ -28,9 +28,9 @@ export const eventsRouter: Router = express.Router()
     sendEvents(res, filter, limit, offset, next);
   })
   .post('/', (req: Request, res: Response, next: NextFunction) => {
-    let filter: Array<string> = [];
-    let limit = req.body.limit && parseInt(req.body.limit);
-    let offset = req.body.offset && parseInt(req.body.offset);
+    let filter: string[] = [];
+    const limit = req.body.limit && parseInt(req.body.limit, 10);
+    const offset = req.body.offset && parseInt(req.body.offset, 10);
 
     if (req.body.type) {
       filter = req.body.type.split(':');
@@ -44,26 +44,26 @@ export const eventsRouter: Router = express.Router()
     sendEvents(res, filter, limit, offset, next);
   });
 
-interface Element {
+interface IElement {
   type: string,
   title: string,
   source: string,
   time: string,
-  description: Object | null,
+  description: object | null,
   icon: string,
   size: string
 }
 
-function sendEvents(res: Response, filter: Array<string>, limit: number, offset: number, next: NextFunction): void {
+function sendEvents(res: Response, filter: string[], limit: number, offset: number, next: NextFunction): void {
   readFileAsync(path.resolve('./server/data/events.json'), {encoding: 'utf-8'})
       .then((data: string) => {
-        let filteredEvents: Array<Element> = JSON.parse(data).events;
+        let filteredEvents: IElement[] = JSON.parse(data).events;
         if (filter) {
-          filteredEvents = filteredEvents.filter((element: Element) => filter.includes(element.type));
+          filteredEvents = filteredEvents.filter((element: IElement) => filter.includes(element.type));
         }
         if (offset || limit) {
-          let start = offset ? Math.max(0, offset) : 0;
-          let end = limit > 0 ? start + limit : undefined;
+          const start = offset ? Math.max(0, offset) : 0;
+          const end = limit > 0 ? start + limit : undefined;
           filteredEvents = filteredEvents.slice(start, end);
         }
 

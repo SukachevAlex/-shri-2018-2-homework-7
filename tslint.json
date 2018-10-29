@@ -8,8 +8,13 @@
         "indent": [true, "spaces", 2],
         "quotemark": [true, "single"],
         "semicolon": [true, "always", "ignore-interfaces"],
+        "only-arrow-functions": [true, "allow-declarations", "allow-named-functions"],
         "ordered-imports": false,
-        "no-unused-expression": true
+        "no-unused-expression": [true, "allow-fast-null-checks"],
+        "no-console": false,
+        "prefer-for-of": false,
+        "no-object-literal-type-assertion": false,
+        "no-var-requires": false
     },
     "rulesDirectory": []
 }

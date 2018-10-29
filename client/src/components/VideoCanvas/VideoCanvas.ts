@@ -1,7 +1,7 @@
 import { Camera } from '../Camera/Camera';
 import { connectStream } from '../AudioAnalyser/AudioAnalyser';
 
-const Canvas: Array<HTMLCanvasElement> = [];
+const Canvas: HTMLCanvasElement[] = [];
 const controlls: HTMLElement | null = document.querySelector('.camera__controlls');
 const volumeControll: HTMLElement | null = document.querySelector('.volume__controll');
 const oscilloscope: HTMLElement | null = document.querySelector('.volume-oscilloscope');
@@ -27,7 +27,7 @@ const volumeBar: HTMLElement | null = document.querySelector('.volume-bar');
             volumeBar && volumeBar.classList.toggle('volume-bar_visible');
 
             if (this.classList.contains('camera_open')) {
-                let num: number = parseInt(this.className.replace(/\D/g, ''));
+                let num: number = parseInt(this.className.replace(/\D/g, ''), 10);
                 connectStream(Camera[--num], num);
             }
         });

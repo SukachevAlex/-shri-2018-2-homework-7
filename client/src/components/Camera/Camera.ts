@@ -1,9 +1,9 @@
 import Hls from "hls.js";
 
-const Camera: Array<HTMLVideoElement> = [];
+const Camera: HTMLVideoElement[] = [];
 
 (function(): void {
-    const cameraUrl: Array<string> = getCameraUrl();
+    const cameraUrl: string[] = getCameraUrl();
 
     cameraUrl.forEach((element, index, array) => {
         let camera = document.createElement('video');
